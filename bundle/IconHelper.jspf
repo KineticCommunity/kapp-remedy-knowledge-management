@@ -1,0 +1,35 @@
+<%!
+    public static class IconHelper {
+
+        private HttpServletRequest request;
+
+        // Document
+        public IconHelper(HttpServletRequest request) {
+          this.request = request;
+        }
+
+        public String getIconForSource(String source){
+            if (source == null){
+                return "";
+            }
+            else if (source.equalsIgnoreCase("Decision Tree")){
+                return "<i class='fa fa-filter' data-description='Decision Tree'></i> ";
+            }
+            else if (source.equalsIgnoreCase("How To")){
+                return "<i class='fa fa-info-circle' data-description='How To'></i> ";
+            }
+            else if (source.equalsIgnoreCase("Known Error")){
+                return "<i class='fa fa-exclamation-triangle' data-description='Known Error'></i> ";
+            }
+            else if (source.equalsIgnoreCase("Problem Solution")){
+                return "<i class='fa fa-question-circle' data-description='Problem Solution'></i> ";
+            }
+            else if (source.equalsIgnoreCase("Reference")){
+                return "<i class='fa fa-archive' data-description='Reference'></i> ";
+            }
+            else {
+                return "";
+            }
+        }
+      }
+%>
