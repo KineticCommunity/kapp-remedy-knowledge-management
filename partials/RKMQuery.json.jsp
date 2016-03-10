@@ -190,7 +190,7 @@
                </c:choose>
              </c:when>
              <c:otherwise>
-                 <%-- <c:set var="jsonData" value="${mfs.search(systemUser)}"/> --%>
+                 <c:set var="jsonData" value="${mfs.search(systemUser)}"/>
             </c:otherwise>
            </c:choose>
          </c:catch>
