@@ -9,7 +9,7 @@
  <%@page pageEncoding="UTF-8" contentType="application/json" trimDirectiveWhitespaces="true"%>
  <%@include file="../bundle/initialization.jspf" %>
      <%-- // Set the page content type, ensuring that UTF-8 is used --%>
-     <%try {%>
+        <c:catch var ="e">
             <%-- Retrieve the search terms from the request parameters. --%>
             <c:set var="mustHave" value="${param.q}"/>
             <c:set var="mayHave" value=""/>
@@ -193,6 +193,7 @@
                  <%-- <c:set var="jsonData" value="${mfs.search(systemUser)}"/> --%>
             </c:otherwise>
            </c:choose>
-         <%} catch (Exception e) {
-           throw e;
-           }%>
+         </c:catch>
+         <c:if test = "${e != null}">
+            ${throw e}
+         </c:if>
