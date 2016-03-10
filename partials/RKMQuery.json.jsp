@@ -11,14 +11,10 @@
      <%-- // Set the page content type, ensuring that UTF-8 is used --%>
      <%try {%>
             <%-- Retrieve the search terms from the request parameters. --%>
-            <%-- <c:set var="mustHave" value="${request.getParameter("q")}"/> <%-- request.getParameter("mustHave"); --%>
-            <%-- <c:set var="mayHave" value=""/> <%-- request.getParameter("mayHave"); --%>
-            <%-- <c:set var="mustNotHave" value=""/> <%-- request.getParameter("mustNotHave"); --%>
-            <%
-            String mustHave = request.getParameter("q");
-            String mayHave = "";
-            String mustNotHave = "";
-            %>
+            <c:set var="mustHave" value="${param.q}"/>
+            <c:set var="mayHave" value=""/>
+            <c:set var="mustNotHave" value=""/>
+
             <%-- Is search term passed in --%>
             <c:set var="validRequest" value="${param.q != null && param.q.length() > 0}"/>
             <%-- Should we return formatted HTML --%>
@@ -26,9 +22,7 @@
             <%-- Should we show the count --%>
             <c:set var="showCount" value="${param.count != null && param.count.equalsIgnoreCase("true")}"/>
             <%-- Perform the multi form search and write the result to the out stream. --%>
-            <c:set var="mfs" value="<%=new MultiFormSearch(mustHave, mayHave, mustNotHave, systemUser)%>"/>
-
-            <c:set var="serverUser" value='${serverUser}'/>
+            <c:set var="mfs" value="${SearchHelper.searchForms(mustHave, mayHave, mustNotHave, systemUser)}"/>
 
           <c:choose>
              <c:when test="${returnHTML}">
@@ -38,11 +32,10 @@
                <c:choose>
                  <c:when test="${validRequest}">
    	                <c:set var="rkmCount" value="0"/>
-   	                <c:forEach var="a" items="${mfs.searchData(serverUser)}">
+   	                <c:forEach var="a" items="${mfs.searchData(systemUser)}">
    	                    <c:if test="${a['Source'] != null}">
                            <c:set var="sourceCallback" value="${a['Source'].toString().replaceAll("\\s","")}"/>
                            <c:set var="sourceCallback" value="${sourceCallback.toLowerCase()}"/>
-                           <%-- <c:set var="sourceCallback" value="${sourceCallback.substring(0, 1).toLowerCase() + sourceCallback.substring(1)}"/> --%>
                            <c:set var="rkmCount" value="${rkmCount + 1}"/>
  	                        <div class="panel panel-default rkm-article" id="article-${a["Article ID"]}">
  	                            <div class="panel-heading rkm-article-title" data-rkm-article-source="${sourceCallback}" data-rkm-article-id="${a["Article ID"]}">
@@ -197,7 +190,7 @@
                </c:choose>
              </c:when>
              <c:otherwise>
-                 <c:set var="jsonData" value="${mfs.search(serverUser)}"/>
+                 <%-- <c:set var="jsonData" value="${mfs.search(systemUser)}"/> --%>
             </c:otherwise>
            </c:choose>
          <%} catch (Exception e) {

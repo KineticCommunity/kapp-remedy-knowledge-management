@@ -24,7 +24,7 @@
 <%@include file="CategoryHelper.jspf"%>
 <%@include file="IconHelper.jspf"%>
 <%@include file="AgeHelper.jspf"%>
-<%@include file="MultiFormSearch.jspf"%>
+<%@include file="SearchHelper.jspf"%>
 
 <%-- Get bundle, space, and kapp objects --%>
 <%
@@ -76,7 +76,7 @@
     variable rather than context.  Then we will set impersonated user on using
     the username from the current context.
 --%>
-<%
+<%-- <%
     com.bmc.arsys.api.ARServerUser serverUser = null;
     // if (context != null) {
     //     if (context.isImpersonating()) {
@@ -98,7 +98,7 @@
         serverUser.setPort(3000);
         serverUser.login();
     // }
-%>
+%> --%>
 
 <%-- Load helper(s) --%>
 <%
@@ -110,7 +110,8 @@
   request.setAttribute("SetupHelper", setupHelper);
   request.setAttribute("AgeHelper", new AgeHelper(request));
   request.setAttribute("IconHelper", new IconHelper(request));
-  request.setAttribute("serverUser", new com.bmc.arsys.api.ARServerUser("Demo", "", "en", "emu.kineticdata.com"));
+  request.setAttribute("SearchHelper", new SearchHelper(request));
+  request.setAttribute("systemUser", systemUser);
 %>
 
 <%--

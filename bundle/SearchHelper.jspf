@@ -1,5 +1,19 @@
 <%!
-    public static class SearchHelper {
+
+  public static class SearchHelper {
+
+    private HttpServletRequest request;
+
+    // Document
+    public SearchHelper(HttpServletRequest request) {
+      this.request = request;
+    }
+
+    public MultiFormSearch searchForms(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser systemUser)  throws Exception {
+        return new MultiFormSearch(mustHave, mayHave, mustNotHave, systemUser);
+    };
+
+    public static class MultiFormSearch {
 
         private static final String TARGETFORM = "AR System Multi-Form Search";
         private String mustHave = null;
@@ -8,18 +22,20 @@
         private com.bmc.arsys.api.ARServerUser systemUser = null;
         private String query = null;
 
-        public SearchHelper(com.bmc.arsys.api.ARServerUser systemUser) throws Exception {
+        public MultiFormSearch(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser systemUser) throws Exception {
+            this.mustHave = mustHave;
+            this.mayHave = mayHave;
+            this.mustNotHave = mustNotHave;
             this.systemUser = systemUser;
+            this.query = buildQuery();
         }
 
-        public String search(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser serverUser) throws com.bmc.arsys.api.ARException, Exception {
-          this.query = buildQuery();
-          return org.json.simple.JSONValue.toJSONString( performSearch(serverUser) );
+        public String search(com.bmc.arsys.api.ARServerUser serverUser) throws com.bmc.arsys.api.ARException, Exception {
+        	return org.json.simple.JSONValue.toJSONString( performSearch(serverUser) );
         }
 
-        public ArrayList<LinkedHashMap> searchData(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser serverUser) throws com.bmc.arsys.api.ARException, Exception {
-          this.query = buildQuery();
-          return performSearch(serverUser);
+        public ArrayList<LinkedHashMap> searchData(com.bmc.arsys.api.ARServerUser serverUser) throws com.bmc.arsys.api.ARException, Exception {
+            return performSearch(serverUser);
         }
 
         /**
@@ -164,4 +180,5 @@
             return result;
         }
     }
+  }
 %>

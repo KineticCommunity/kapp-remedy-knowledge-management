@@ -8,8 +8,8 @@
 
         // Document
         public AgeHelper(HttpServletRequest request) {
-  			this.request = request;
-  		}
+    			this.request = request;
+    		}
 
         public static String timeAgo(java.util.Date pastDate) {
             // Create a date object that represents the current date and time.
