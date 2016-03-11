@@ -6,8 +6,33 @@ It includes:
 * initialization.jspf
 * router.jspf
 * SearchHelper.jspf
+* ResponseHelper.jspf
 * IconHelper.jspf
 * AgeHelper.jspf
+
+* rkm.js
+
+* RKMQuery.json.jsp
+
+* HowTo.html.jsp
+* knownError.html.jsp
+* problemSolution.html.jsp
+* reference.html.jsp
+* decisionTree.html.jsp
+
+* rkm.jsp
+* rkmArticle.jsp
+
+
+## RKMQuery.json.jsp
+
+Processes RKM search request. Evaluates request parameter and passes along either an HTML display or JSON data.
+
+
+## rkm.js
+
+Preforms Ajax calls and
+
 
 ## SearchHelper.jspf
 
@@ -54,3 +79,6 @@ Returns - String string
 Takes in creation date of an object and compares that with the current date and returns the amount of time that has elapsed.
 Requires - java.util.Date pastDate
 Returns - String string
+
+
+## ResponseHelper.jspf

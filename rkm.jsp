@@ -15,7 +15,7 @@
   <!-- Page Stylesheets -->
   <%-- <link rel="stylesheet" href="package.css" type="text/css" /> --%>
   <!-- Page Javascript -->
-  <%-- <script defer type="text/javascript" src="js/package.js"></script> --%>
+  <%-- <script defer type="text/javascript" src="js/rkm.js"></script> --%>
 
   <c:if test="${RKMResultType.getByValue(request.getParameter("resultType")).equals(RKMResultType.CONTAINER)}">
       <section id="rkm-section">

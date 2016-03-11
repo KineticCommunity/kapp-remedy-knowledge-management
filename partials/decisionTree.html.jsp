@@ -3,6 +3,7 @@
 
 <c:choose>
   <c:when test="${context == null}">
+    <%-- checks if user is logged in --%>
       <c:out value="${ResponseHelper.sendUnauthorizedResponse(response)}">
   <c:otherwise>
       <c:set var="articleId" value="${request.getParameter("articleId")}"/>
