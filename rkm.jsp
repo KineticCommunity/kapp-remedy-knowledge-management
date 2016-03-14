@@ -27,15 +27,15 @@
   		            Remedy Knowledge Management
   		        </div>
   		        <div class="rkm-search">
-  		            <form id="rkm-search-form">
-  			            <div class="input-group input-group-sm">
-  			                <input type="text" class="form-control" value="${request.getParameter('q') != null ? request.getParameter('q') : ''}" placeholder="Search Remedy Knowledge Management" name="q">
-                              <span class="input-group-addon rkm-message hide"></span>
-                              <span class="input-group-addon rkm-error hide"></span>
-  			                <span class="input-group-btn">
-  			                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
-  			                </span>
-  			            </div>
+  		          <form id="rkm-search-form">
+			            <div class="input-group input-group-sm">
+			                <input type="text" class="form-control" value="${request.getParameter('q') != null ? request.getParameter('q') : ''}" placeholder="Search Remedy Knowledge Management" name="q">
+                      <span class="input-group-addon rkm-message hide"></span>
+                      <span class="input-group-addon rkm-error hide"></span>
+			                <span class="input-group-btn">
+			                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+			                </span>
+			            </div>
   			        </form>
   		        </div>
   		        <div class="rkm-results"></div>
