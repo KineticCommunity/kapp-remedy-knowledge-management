@@ -23,7 +23,7 @@
   	    };
 
       $(function() {
-      	var param = "<%= qParam %>";
+      	var param = "${param.q}";
       	if ( param == null || param.length <= 0) {
               $("#messages").html('<div class="message">Please enter search terms.</div>');
           } else {
@@ -60,7 +60,7 @@
                           var articleSource = results[i]["Source"].substring(0, 1).toLowerCase() + results[i]["Source"].substring(1).replace(/ /g,"");
 
                           var resultDiv = $('<div class="result"></div>');
-
+                          var articleId = "${param.articleId}";
                           var titleDiv = $('<div class="clearfix"></div>');
                           titleDiv.append('<div class="titleText col-xs-10"><a>' + results[i]["Article Title"] + '</a></div>');
                           (function(articleSource, articleId){

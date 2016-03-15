@@ -39,7 +39,7 @@
    	                <c:forEach var="a" items="${mfs.searchData(systemUser)}">
    	                    <c:if test="${a['Source'] != null}">
                           <c:set var="sourceCallback" value="${a['Source'].toString().replaceAll("\\s","")}"/>
-                          <c:set var="sourceCallback" value="${sourceCallback.toLowerCase()}"/>
+                          <c:set var="sourceCallback" value="${sourceCallback.substring(0, 1).toLowerCase()}${sourceCallback.substring(1)}"/>
                           <c:set var="rkmCount" value="${rkmCount + 1}"/>
  	                        <div class="panel panel-default rkm-article" id="article-${a["Article ID"]}">
  	                            <div class="panel-heading rkm-article-title" data-rkm-article-source="${sourceCallback}" data-rkm-article-id="${a["Article ID"]}">
@@ -57,14 +57,14 @@
  	                                    <i class="fa fa-clock-o" data-description="${a["Created Date"]}"></i> <span>${a["Created Ago"]} ago</span>
  	                                </div>
  	                            </div>
- 	                            <div class="panel-body rkm-article-text hide">
+ 	                            <div class="panel-body rkm-article-text collapse">
  	                                <i class="fa fa-spinner fa-spin"></i> Loading Article
  	                            </div>
  	                        </div>
    	                    </c:if>
    	                </c:forEach>
 
-                   <div class="rkm-count hide" data-rkm-count="${rkmCount}"></div>
+                   <div class="rkm-count collapse" data-rkm-count="${rkmCount}"></div>
                    <style type="text/css">
                        .rkm-message-container,
            						.rkm-article {
@@ -128,7 +128,7 @@
                    </style>
                    <script type="text/javascript">
                        $('div.rkm-message').text("${rkmCount} Result" + ("${rkmCount}" != "1" ? "s" : ""));
-                       <c:out value="${showCount ? "$('div.rkm-message-container').removeClass('hide');" : ""}"/>
+                       <c:out value="${showCount ? "$('div.rkm-message-container').hide();" : ""}"/>
                        var qtipOptions = {
                            content: { attr:'data-description' },
                            style: { classes:'qtip-tipsy qtip-shadow', tip: { corner: true } },
@@ -143,45 +143,45 @@
                        	if (!dataLoaded){
                        		$article.data('rkm-article-loaded', true);
                        		var $articleText = $article.find('.rkm-article-text');
-
-                           var closeOnly = $('div#article-' + articleId).hasClass('selected-article');
-                           $('div.selected-article.show').empty().toggleClass('selected-article show');
+                          var articleId = $(this).data('rkm-article-id');
+                          var closeOnly = $('div#article-' + articleId).hasClass('selected-article');
+                          $('div.selected-article.show').empty().toggleClass('selected-article show');
                           // calls partial display
                        		$.ajax({
-                                   url: '${bundle.kappLocation}' + '&partial=' + $(this).data('rkm-article-source') + '.html',
-                                   data: { articleId: $(this).data('rkm-article-id')},
-                                   success: function(data) {
-                                       // Article Data
-                                       $articleText.html(data);
+                              url: '${bundle.kappLocation}' + '?partial=' + $(this).data('rkm-article-source') + '.html',
+                              data: { articleId: $(this).data('rkm-article-id')},
+                              success: function(data) {
+                                   // Article Data
+                                   $articleText.html(data);
 
-                                       // Images through Kinetic
-                                       $articleText.find("img").each(function(){
-                                         var arattid, arentryid, arschema;
-                                           arattid = $(this).attr("arattid");
-                                           ($(this).attr("arschema") && $(this).attr("arschema").length > 0) ? arschema = $(this).attr("arschema") : arschema = articleForm;
-                                           ($(this).attr("arentryid") && $(this).attr("arentryid").length > 0) ? arentryid = $(this).attr("arentryid") : arentryid = articleRequestId.replace(/(KBA\w+)/,"").replace('|',"");
-                                           $(this).attr("src", "DownloadAttachment/" + arschema + "/" + arattid + "/" + arentryid);
-                                       });
+                                   // Images through Kinetic
+                                   $articleText.find("img").each(function(){
+                                     var arattid, arentryid, arschema;
+                                       arattid = $(this).attr("arattid");
+                                       ($(this).attr("arschema") && $(this).attr("arschema").length > 0) ? arschema = $(this).attr("arschema") : arschema = articleForm;
+                                       ($(this).attr("arentryid") && $(this).attr("arentryid").length > 0) ? arentryid = $(this).attr("arentryid") : arentryid = articleRequestId.replace(/(KBA\w+)/,"").replace('|',"");
+                                       $(this).attr("src", "DownloadAttachment/" + arschema + "/" + arattid + "/" + arentryid);
+                                   });
 
-                                       // Document attachments through Kinetic
-                                       $articleText.find("a[path*='sharedresources']").each(function(){
-                                         var path = $(this).attr('path').replace(/\?(.*)/,"");
-                                         var urlParsed = path.split("/");
-                                         $(this).attr("href", "DownloadAttachment/" + urlParsed[2] + "/" + urlParsed[3] + "/" + urlParsed[4]);
-                                       });
+                                   // Document attachments through Kinetic
+                                   $articleText.find("a[path*='sharedresources']").each(function(){
+                                     var path = $(this).attr('path').replace(/\?(.*)/,"");
+                                     var urlParsed = path.split("/");
+                                     $(this).attr("href", "DownloadAttachment/" + urlParsed[2] + "/" + urlParsed[3] + "/" + urlParsed[4]);
+                                   });
 
-                                       // Keywords
-                                       var strKeywords = $articleText.find('.article .field .value.keywords').text();
-                                       var keywords = strKeywords.replace(/[\n\r]/g,"").split(" ");
-                                       $articleText.find('.article .field .value.keywords').empty();
-                                       $.each(keywords, function(index,val){
-                                         if(val != ""){
-                                       	  $articleText.find('.article .field .value.keywords').append('<span>'+val+'</span>');
-                                         }
-                                       });
-                                   }
-                               });
-                       	}
+                                   // Keywords
+                                   var strKeywords = $articleText.find('.article .field .value.keywords').text();
+                                   var keywords = strKeywords.replace(/[\n\r]/g,"").split(" ");
+                                   $articleText.find('.article .field .value.keywords').empty();
+                                   $.each(keywords, function(index,val){
+                                     if(val != ""){
+                                   	  $articleText.find('.article .field .value.keywords').append('<span>'+val+'</span>');
+                                     }
+                                   });
+                               }
+                           });
+                   	     }
                        });
                    </script>
                  </c:when>

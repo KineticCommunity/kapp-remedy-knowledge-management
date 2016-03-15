@@ -27,6 +27,7 @@
 <%@include file="AgeHelper.jspf"%>
 <%@include file="SearchHelper.jspf"%>
 <%@include file="ResponseHelper.jspf"%>
+<%@include file="HtmlHelper.jspf"%>
 
 <%-- Get bundle, space, and kapp objects --%>
 <%
@@ -113,6 +114,7 @@
   request.setAttribute("AgeHelper", new AgeHelper(request));
   request.setAttribute("IconHelper", new IconHelper(request));
   request.setAttribute("SearchHelper", new SearchHelper(request));
+  request.setAttribute("HtmlHelper", new HtmlHelper(request));
   request.setAttribute("systemUser", systemUser);
 %>
 

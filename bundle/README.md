@@ -1,3 +1,5 @@
+# kapp-remedy-knowledge-management
+
 ## Overview
 The bundle directory includes files that are needed for initialization and helper files for commonly used functionality.
 
@@ -35,6 +37,7 @@ Preforms Ajax calls and
 
 
 ## SearchHelper.jspf
+Examples can be viewed at : http://community.kineticdata.com/10_Kinetic_Request/Kinetic_Request_Core_Edition/Resources/Bundle_Search_Helper
 
 **${SearchHelper.searchForms(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser serverUser)}**
 initializes the MultiFormSearch class by supplying required parameters and builds a private "query" attribute

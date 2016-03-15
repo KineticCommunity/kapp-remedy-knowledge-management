@@ -54,16 +54,16 @@
 
 
 <%-- Include the bundle js config initialization. --%>
-<%@include file="../../../../core/interface/fragments/packageJsInitialization.jspf" %>
+<%@include file="bundle/initialization.jspf" %>
 
         <!-- Page Stylesheets -->
-        <link rel="stylesheet" href="<%= bundle.packagePath()%>assets/css/package.css" type="text/css" />
-        <link rel="stylesheet" href="<%= bundle.packagePath()%>assets/css/rkmArticle.css" type="text/css" />
+        <link rel="stylesheet" href="css/package.css" type="text/css" />
+        <link rel="stylesheet" href="css/rkmArticle.css" type="text/css" />
         <!-- Page Javascript -->
-        <script type="text/javascript" src="<%=bundle.packagePath()%>assets/js/rkmArticle.js"></script>
+        <script type="text/javascript" src="js/rkmArticle.js"></script>
                     <header class="container">
                         <h3>
-                            <%=themeLocalizer.getString("Knowledge Article")%>
+                            Knowledge Article
                         </h3>
                     </header>
                     <section class="container">
@@ -71,7 +71,7 @@
                             <li class="border-top col-sm-6 wide" id="knowledgeSearch">
                                 <div class="content-wrap">
                                     <div class="description-wide">
-                                        <h3><div class="title" id="article-title"><%=request.getParameter("articleId")%>: </div> <i class="fa fa-cart"></i></h3>
+                                        <h3><div class="title" id="article-title">${param.articleId}: </div> <i class="fa fa-cart"></i></h3>
                                         <div class="portlet-content rkm">
                                             <div class="clearfix" id="article-content">
                                             </div>
