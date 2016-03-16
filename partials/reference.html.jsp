@@ -6,7 +6,6 @@
       <%-- <c:out value="${ResponseHelper.sendUnauthorizedResponse(response)}"/>
   </c:when>
   <c:otherwise> --%>
-    <c:out value="otherwise"/>
       <c:set var="articleId" value="${param.articleId}"/>
       <c:set var="reference" value="${HtmlHelper.findReferenceById(systemUser, articleId)}"/>
       <div class="article">

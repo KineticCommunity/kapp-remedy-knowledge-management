@@ -9,6 +9,7 @@ It includes:
 * router.jspf
 * SearchHelper.jspf
 * ResponseHelper.jspf
+* HtmlHelper.jspf
 * IconHelper.jspf
 * AgeHelper.jspf
 
@@ -33,7 +34,7 @@ Processes RKM search request. Evaluates request parameter and passes along eithe
 
 ## rkm.js
 
-Preforms Ajax calls and
+Preforms Ajax calls that retrieve search results and can also load articles
 
 
 ## SearchHelper.jspf
@@ -84,4 +85,39 @@ Requires - java.util.Date pastDate
 Returns - String string
 
 
-## ResponseHelper.jspf
+## HtmlHelper.jspf
+
+**${findReferenceById(com.bmc.arsys.api.ARServerUser serverUser, String id)}**
+takes in user information and an article id, then fetches the related article
+Requires - com.bmc.arsys.api.ARServerUser serverUser, String id
+Returns - Reference
+
+**${findHowToById(com.bmc.arsys.api.ARServerUser serverUser, String id)}**
+takes in user information and an article id, then fetches the related article
+Requires - com.bmc.arsys.api.ARServerUser serverUser, String id
+Returns - HowTo
+
+**${findKnownErrorById(com.bmc.arsys.api.ARServerUser serverUser, String id)}**
+takes in user information and an article id, then fetches the related article
+Requires - com.bmc.arsys.api.ARServerUser serverUser, String id
+Returns - KnownError
+
+**${findProblemSolutionById(com.bmc.arsys.api.ARServerUser serverUser, String id)}**
+takes in user information and an article id, then fetches the related article
+Requires - com.bmc.arsys.api.ARServerUser serverUser, String id
+Returns - ProblemSolution
+
+**${findDecisionTreeById(com.bmc.arsys.api.ARServerUser serverUser, String id)}**
+takes in user information and an article id, then fetches the related article
+Requires - com.bmc.arsys.api.ARServerUser serverUser, String id
+Returns - DecisionTree
+
+**${findKnowledgeArticleById(com.bmc.arsys.api.ARServerUser serverUser, String id)}**
+takes in user information and an article id, then fetches the related article
+Requires - com.bmc.arsys.api.ARServerUser serverUser, String id
+Returns - KnowledgeArticle
+
+
+## HowTo.html.jsp, knownError.html.jsp, problemSolution.html.jsp, reference.html.jsp, decisionTree.html.jsp
+
+Respective sub form display for each type of result
