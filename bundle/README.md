@@ -38,6 +38,7 @@ Preforms Ajax calls that retrieve search results and can also load articles
 
 
 ## SearchHelper.jspf
+
 Examples can be viewed at : http://community.kineticdata.com/10_Kinetic_Request/Kinetic_Request_Core_Edition/Resources/Remedy_Knowledge_Management
 
 **${SearchHelper.searchForms(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser serverUser)}**

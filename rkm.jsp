@@ -4,7 +4,7 @@
 <bundle:layout page="layouts/form.jsp">
 
   <script type="text/javascript">
-      // var resultType = "${RKMResultType.getByValue(param.resultType).valueOf()}";
+      var resultType = "${RKMResultType.getByValue(param.resultType).valueOf()}";
       var queryParameterExists = ${param.q == null ? false : true};
       var queryParameter = "${param.q != null ? param.q : ""}";
   </script>
@@ -17,7 +17,6 @@
         <div class="rkm-data">
 	        <div class="rkm-title">
 	            Remedy Knowledge Management
-              <%-- <c:out value="${pageContext.request.pathInfo}" /> --%>
 	        </div>
 	        <div class="rkm-search">
 	          <form id="rkm-search-form">
@@ -43,6 +42,3 @@
     </section>
   </c:if>
 </bundle:layout>
-
-
-<%-- url?q= --%>
