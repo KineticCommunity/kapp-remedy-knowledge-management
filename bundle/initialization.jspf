@@ -65,8 +65,8 @@
         // systemUser.login();
         systemUser.setPort(3000);
         systemUser.login();
-        // systemUser.setImpersonatedUser(identity.getUsername());
-        // systemUser.setImpersonatedUser("stephanie.harms@kineticdata.com");
+        systemUser.setImpersonatedUser(identity.getUsername());
+        // systemUser.setImpersonatedUser("Testuser");
 %>
 
 <%-- Load helper(s) --%>
