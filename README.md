@@ -45,7 +45,7 @@ This RKM bundle uses our standard directory structure. Bundles are completely se
 bellow is the structure of how json data is returned from an callback
 
 ## externalRKMQuery.json.jsp
-<code><pre>
+<code>
 <%@page pageEncoding="UTF-8" contentType="application/json" trimDirectiveWhitespaces="true"%>
 <%@include file="../bundle/initialization.jspf"%>
 <%@taglib prefix="json" uri="http://kineticdata.com/taglibs/json"%>
@@ -73,4 +73,4 @@ bellow is the structure of how json data is returned from an callback
             </json:object>
           </c:forEach>
         </json:array>
-</pre></code>
+        </code>
