@@ -5,7 +5,6 @@ It includes the default:
 
 * RKM service Kapp (kapp.jsp)
 * Full Article display (rkmArticle.jsp)
-* Form display (form.jsp)
 * Login page (login.jsp)
 * Reset Password (resetPassword.jsp)
 
@@ -13,14 +12,14 @@ It includes the default:
 This bundle easily allows for minor personalization by including optional attributes in your KAPP, Form and/or Categories.
 
 #### KAPP Attributes
-  The following KAPP Attributes are required to properly establish a connection to RKM.
+The following KAPP Attributes are required to properly establish a connection to RKM.
 * _rkmAdminUsername_ : The name of the service administrator.
 * _rkmAdminPassword_ : The password of the service administrator.
 * _rkmLocale_ : The local language code. This is the language in which you want the information returned.
 * _rkmServer_ : The server on which the RKM data is stored. this will be something like _server.yourcompany.com_.
 * _rkmPort_ : The port number.
 
-  The following Kapp Attribute are required to properly establish a connection to Filehub and properly display images.
+The following Kapp Attribute are required to properly establish a connection to Filehub and properly display images.
 * _Filehub Url_ : The URL to the Kinetic Filehub application. (https://acme.com/kinetic-filehub)
 * _RKM Filestore Slug_ : The slug of the desired filestore configured in Kinetic Filehub.
 * _RKM Filestore Key_ : The secret associated to the specified key.
@@ -39,22 +38,39 @@ When you customize this bundle it is a good idea to fork it on your own git serv
 We also suggest you update this README with your own change summary for future bundle developers.
 
 ### Structure
-This default bundle uses our standard directory structure. Bundles are completely self contained so should include all libraries and markup needed.
+This RKM bundle uses our standard directory structure. Bundles are completely self contained so should include all libraries and markup needed.
 
+### External RKM Call
+
+bellow is the structure of how json data is returned from an callback
+
+## externalRKMQuery.json.jsp
 <code><pre>
-/*bundle-name*
-  /*bundle*: Initialization scripts and helpers
-  /*css*: Cascading style sheets. If you use Sass, check our the scss directory here.
-  /*images*: Stores images and favicons.
-  /*js*: All javascript goes here.
-  /*layouts*: One or more layouts wraps your views and generally includes your HTML head elements and any content that should show up on all pages.
-  /*libraries*: Include CSS, JS or other libraries here including things like JQuery or bootstrap.
-  /*pages*:  Individual page content views. In our example we have a profile.jsp and search.jsp.
-  /*partials*: These are view snippets that get used in the top-layer JSP views. Feel free to include sub-directories here if your set of partials gets unwieldy.
-  /*confirmation.jsp*: The default confirmation page on form submits.
-  /*form.jsp*: The default form JSP wrapper.
-  /*kapp.jsp*: This is the catalog console page or self service portal page.  This typically lists the forms by category, my requests, my approvals and more.
-  /*login.jsp*: The default login page. Can be overridden in your Space Admin Console.
-  /*resetPassword.jsp*: The default reset password page. This will trigger the system to send an email to the user to reset their password. Note that the SMTP server needs to be configured to work.
-  /*space.jsp*: A page that displays a list of KAPPs (often request catalogs) that you have access to within your space.
+<%@page pageEncoding="UTF-8" contentType="application/json" trimDirectiveWhitespaces="true"%>
+<%@include file="../bundle/initialization.jspf"%>
+<%@taglib prefix="json" uri="http://kineticdata.com/taglibs/json"%>
+    <%-- Set the page content type, ensuring that UTF-8 is used --%>
+    <%-- establishes a catch condition in the event the enclosed code fails --%>
+       <%-- Retrieve the search terms from the request parameters. --%>
+       <c:set var="mustHave" value="${rkmQuery}"/>
+       <c:set var="mayHave" value=""/>
+       <c:set var="mustNotHave" value=""/>
+       <%-- Perform the multi form search and write the result to the out stream. --%>
+       <c:set var="mfs" value="${RKMHelper.searchForms(mustHave, mayHave, mustNotHave, systemUser)}"/>
+        <%-- form.jsp --%>
+       <json:array>
+         <%-- Pulls back stringified JSON Data if returnHTML is false --%>
+         <c:forEach var="jsonData" items="${mfs.searchData(systemUser)}">
+            <json:object>
+              <json:property name="id" value="${jsonData['Article ID']}"/>
+              <json:property name="title" value="${jsonData['Article Title']}"/>
+              <json:property name="source" value="${jsonData['Source']}"/>
+              <json:property name="created date" value="${jsonData['Created Date']}"/>
+              <json:property name="link" value="${bundle.getKappLocation()}?partial=${jsonData['Source'].substring(0, 1).toLowerCase()}${fn:replace(jsonData['Source'].substring(1), ' ', '')}.html&articleId=${jsonData['Article ID']}"/>
+              <json:property name="summary" value="${jsonData['Summary']}"/>
+              <json:property name="kappSlug" value="${kapp.slug}"/>
+              <json:property name="kappName" value="${kapp.name}"/>
+            </json:object>
+          </c:forEach>
+        </json:array>
 </pre></code>
