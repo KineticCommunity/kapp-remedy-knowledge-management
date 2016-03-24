@@ -1,11 +1,11 @@
 <%!
 
-  public static class SearchHelper {
+  public static class RKMHelper {
 
     private HttpServletRequest request;
 
     // Document
-    public SearchHelper(HttpServletRequest request) {
+    public RKMHelper(HttpServletRequest request) {
       this.request = request;
     }
 

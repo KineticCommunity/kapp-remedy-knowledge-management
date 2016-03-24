@@ -7,7 +7,7 @@ It includes:
 
 * initialization.jspf
 * router.jspf
-* SearchHelper.jspf
+* RKMHelper.jspf
 * ResponseHelper.jspf
 * HtmlHelper.jspf
 * IconHelper.jspf
@@ -36,21 +36,21 @@ Processes RKM search request. Evaluates request parameter and passes along eithe
 Preforms Ajax calls that retrieve search results and can also load articles
 
 
-## SearchHelper.jspf
+## RKMHelper.jspf
 
 Examples can be viewed at : http://community.kineticdata.com/10_Kinetic_Request/Kinetic_Request_Core_Edition/Resources/Remedy_Knowledge_Management
 
-**${SearchHelper.searchForms(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser serverUser)}**
+**${RKMHelper.searchForms(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser serverUser)}**
 initializes the MultiFormSearch class by supplying required parameters and builds a private "query" attribute
 Requires - String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser serverUser
 Returns - MultiFormSearch
 
-**${SearchHelper.searchForms.search(com.bmc.arsys.api.ARServerUser serverUser)}**
+**${RKMHelper.searchForms.search(com.bmc.arsys.api.ARServerUser serverUser)}**
 Gets objects that are found by calling the private "preformSearch" function filtering results through the query attributes. Search then returns a JSON string of the results.
 Requires - com.bmc.arsys.api.ARServerUser serverUser
 Returns - String string
 
-**${SearchHelper.searchForms.searchData(com.bmc.arsys.api.ARServerUser serverUser)}**
+**${RKMHelper.searchForms.searchData(com.bmc.arsys.api.ARServerUser serverUser)}**
 Gets objects that are found by calling the private "preformSearch" function filtering results through the query attributes.
 Requires - com.bmc.arsys.api.ARServerUser serverUser
 Returns - ArrayList<LinkedHashMap> list

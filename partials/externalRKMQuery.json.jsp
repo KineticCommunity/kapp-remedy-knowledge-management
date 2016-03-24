@@ -16,7 +16,7 @@
         <c:set var="mayHave" value=""/>
         <c:set var="mustNotHave" value=""/>
         <%-- Perform the multi form search and write the result to the out stream. --%>
-        <c:set var="mfs" value="${SearchHelper.searchForms(mustHave, mayHave, mustNotHave, systemUser)}"/>
+        <c:set var="mfs" value="${RKMHelper.searchForms(mustHave, mayHave, mustNotHave, systemUser)}"/>
          <%-- form.jsp --%>
         <json:array>
           <%-- Pulls back stringified JSON Data if returnHTML is false --%>

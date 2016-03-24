@@ -1,39 +1,37 @@
 ## Overview
-This bundle is used internally by Kinetic Request CE and is a good starting point to build out your own bundles.
+This bundle is used to access BMC Remedy Knowledge Management.
 
 It includes the default:
 
-* Listing of Kapps (kapp.jsp)
+* RKM service Kapp (kapp.jsp)
+* Full Article display (rkmArticle.jsp)
 * Form display (form.jsp)
 * Login page (login.jsp)
 * Reset Password (resetPassword.jsp)
 
-## Assumptions
-Wherever possible we use defaults to make sure the pages will render correctly regardless of any attributes, categories or other configurations you perform on your forms.
-
-The one exception to this is "My Requests" and "My Approvals".  In order to grab only the appropriate submissions we are looking for form types of _"Service"_ for My Requests and _"Approval"_ for My Approvals.  While the form won't break if you don't include this, it also won't show your requests or your approvals.
-
 ## Personalization
 This bundle easily allows for minor personalization by including optional attributes in your KAPP, Form and/or Categories.
 
-#### Setup Initialization
-This base bundle has _Required Attributes_ that utilizes Kinetic Task. To edit or add Required Attributes, you define and initialize attribute's in the intilialization.jspf. You can view this Kapp configuration by viewing the passing the parameter in the url, i.e. (http://localhost:8080/kinetic/kappName?partial=setup).
-
 #### KAPP Attributes
-* _Logo Url_ : By including this attribute we will use this logo instead of the home icon on the top-left of the page
-* _Logo Height Px_ : By including this attribute we will set the height of the logo in the header. Default is 40px with 5px of padding.
-* _Sidebar Html_ : We show the Kinetic Data Twitter feed by default, but you can add any HTML/widget by including the HTML/JS in this attribute.
+  The following KAPP Attributes are required to properly establish a connection to RKM.
+* _rkmAdminUsername_ : The name of the service administrator.
+* _rkmAdminPassword_ : The password of the service administrator.
+* _rkmLocale_ : The local language code. This is the language in which you want the information returned.
+* _rkmServer_ : The server on which the RKM data is stored. this will be something like _server.yourcompany.com_.
+* _rkmPort_ : The port number.
+
+  The following Kapp Attribute are required to properly establish a connection to Filehub and properly display images.
+* _Filehub Url_ : The URL to the Kinetic Filehub application. (https://acme.com/kinetic-filehub)
+* _RKM Filestore Slug_ : The slug of the desired filestore configured in Kinetic Filehub.
+* _RKM Filestore Key_ : The secret associated to the specified key.
+* _RKM Filestore Secret_ : The key for an access key associated to the specified filestore.
 
 ##### Optional KAPP Attributes
 * _Task Server Url_ : URL of your Kinetic Task engine.
 * _Task Source Name_ : Source name from Kinetic Task engine.
 
-#### Form Attributes
-* _Form Icon Class_ : We include font-awesome icons by default and just apply a random icon to your forms on the catalog page.  However, you can specify a class for your form by including this attribute and a value. (Example fa-bank)
-
 #### Category Attributes
 * _Hidden_ : Including this attribute on a category means the category and forms in that category will not be shown on the portal page.
-
 
 ## Customization
 When you customize this bundle it is a good idea to fork it on your own git server to track your customizations and merge in any code changes we make to the default.
@@ -41,13 +39,13 @@ When you customize this bundle it is a good idea to fork it on your own git serv
 We also suggest you update this README with your own change summary for future bundle developers.
 
 ### Structure
-This default bundle uses our standard directory structure.  Bundles are completely self contained so should include all libraries and markup needed.
+This default bundle uses our standard directory structure. Bundles are completely self contained so should include all libraries and markup needed.
 
 <code><pre>
 /*bundle-name*
   /*bundle*: Initialization scripts and helpers
   /*css*: Cascading style sheets. If you use Sass, check our the scss directory here.
-  /*images*: Duh.
+  /*images*: Stores images and favicons.
   /*js*: All javascript goes here.
   /*layouts*: One or more layouts wraps your views and generally includes your HTML head elements and any content that should show up on all pages.
   /*libraries*: Include CSS, JS or other libraries here including things like JQuery or bootstrap.

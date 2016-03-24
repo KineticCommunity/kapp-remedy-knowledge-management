@@ -24,7 +24,7 @@
 <%@include file="SetupHelper.jspf"%>
 <%@include file="CategoryHelper.jspf"%>
 <%@include file="IconHelper.jspf"%>
-<%@include file="SearchHelper.jspf"%>
+<%@include file="RKMHelper.jspf"%>
 <%@include file="ResponseHelper.jspf"%>
 <%@include file="HtmlHelper.jspf"%>
 
@@ -66,7 +66,7 @@
         systemUser.setPort(3000);
         systemUser.login();
         systemUser.setImpersonatedUser(identity.getUsername());
-        // systemUser.setImpersonatedUser("Testuser");
+        // systemUser.setImpersonatedUser("testUser");
 %>
 
 <%-- Load helper(s) --%>
@@ -78,7 +78,7 @@
   request.setAttribute("CategoryHelper", new CategoryHelper());
   request.setAttribute("SetupHelper", setupHelper);
   request.setAttribute("IconHelper", new IconHelper(request));
-  request.setAttribute("SearchHelper", new SearchHelper(request));
+  request.setAttribute("RKMHelper", new RKMHelper(request));
   request.setAttribute("HtmlHelper", new HtmlHelper(request));
   request.setAttribute("systemUser", systemUser);
 %>

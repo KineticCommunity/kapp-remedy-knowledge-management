@@ -23,7 +23,7 @@
             <%-- Should we show the count --%>
             <c:set var="showCount" value="${param.count != null && param.count.equalsIgnoreCase("true")}"/>
             <%-- Perform the multi form search and write the result to the out stream. --%>
-            <c:set var="mfs" value="${SearchHelper.searchForms(mustHave, mayHave, mustNotHave, systemUser)}"/>
+            <c:set var="mfs" value="${RKMHelper.searchForms(mustHave, mayHave, mustNotHave, systemUser)}"/>
 
           <c:choose>
             <%-- checks if return type is HTML --%>
