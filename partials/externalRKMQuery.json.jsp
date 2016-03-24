@@ -22,10 +22,11 @@
           <%-- Pulls back stringified JSON Data if returnHTML is false --%>
           <c:forEach var="jsonData" items="${mfs.searchData(systemUser)}">
              <json:object>
+               <json:property name="id" value="${jsonData['Article ID']}"/>
                <json:property name="title" value="${jsonData['Article Title']}"/>
                <json:property name="source" value="${jsonData['Source']}"/>
                <json:property name="created date" value="${jsonData['Created Date']}"/>
-               <json:property name="created ago" value="${jsonData['Created Ago']}"/>
+               <json:property name="link" value="${bundle.getKappLocation()}?partial=${jsonData['Source'].substring(0, 1).toLowerCase()}${fn:replace(jsonData['Source'].substring(1), ' ', '')}.html&articleId=${jsonData['Article ID']}"/>
                <json:property name="summary" value="${jsonData['Summary']}"/>
                <json:property name="kappSlug" value="${kapp.slug}"/>
                <json:property name="kappName" value="${kapp.name}"/>

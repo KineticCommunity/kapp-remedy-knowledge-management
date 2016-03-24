@@ -24,7 +24,6 @@
 <%@include file="SetupHelper.jspf"%>
 <%@include file="CategoryHelper.jspf"%>
 <%@include file="IconHelper.jspf"%>
-<%@include file="AgeHelper.jspf"%>
 <%@include file="SearchHelper.jspf"%>
 <%@include file="ResponseHelper.jspf"%>
 <%@include file="HtmlHelper.jspf"%>
@@ -34,6 +33,7 @@
     Bundle bundle = (Bundle)request.getAttribute("bundle");
     Space space = (Space)request.getAttribute("space");
     Kapp kapp = (Kapp)request.getAttribute("kapp");
+    Identity identity = (Identity)request.getAttribute("identity");
 %>
 
 <%-- Define and initialize SetupAttribute helper --%>
@@ -65,43 +65,9 @@
         // systemUser.login();
         systemUser.setPort(3000);
         systemUser.login();
+        // systemUser.setImpersonatedUser(identity.getUsername());
+        // systemUser.setImpersonatedUser("stephanie.harms@kineticdata.com");
 %>
-
-<%--
-    Create an ARServerUser instance that will be used to query the multi search
-    form.  This instance is created by retrieving the username and password from
-    the current context and using the bundle properties that define the rkm
-    server.  This assumes that the user record will be the same on the kinetic
-    request and rkm servers.
-
-    Note that if the context is using impersonate user we will create the new
-    ARServerUser instance using the username and password from the systemContext
-    variable rather than context.  Then we will set impersonated user on using
-    the username from the current context.
---%>
-<%-- <%
-    com.bmc.arsys.api.ARServerUser serverUser = null;
-    // if (context != null) {
-    //     if (context.isImpersonating()) {
-    //         serverUser = new com.bmc.arsys.api.ARServerUser(
-    //             kapp.getAttributeValue("rkmAdminUsername"),
-    //             kapp.getAttributeValue("rkmAdminPassword"),
-    //             kapp.getAttributeValue("rkmLocale"),
-    //             kapp.getAttributeValue("rkmServer"));
-    //         serverUser.setImpersonatedUser(kapp.getAttributeValue("rkmAdminUsername"));
-    //     } else {
-            serverUser = new com.bmc.arsys.api.ARServerUser("Demo", "", "en", "emu.kineticdata.com");
-                // kapp.getAttributeValue("rkmAdminUsername"),
-                // kapp.getAttributeValue("rkmAdminPassword"),
-                // kapp.getAttributeValue("rkmLocale"),
-                // kapp.getAttributeValue("rkmServer"));
-                // serverUser.setPort(Integer.parseInt(kapp.getAttributeValue("rkmPort")));
-                // serverUser.login();
-        // }
-        serverUser.setPort(3000);
-        serverUser.login();
-    // }
-%> --%>
 
 <%-- Load helper(s) --%>
 <%
@@ -111,7 +77,6 @@
   request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
   request.setAttribute("CategoryHelper", new CategoryHelper());
   request.setAttribute("SetupHelper", setupHelper);
-  request.setAttribute("AgeHelper", new AgeHelper(request));
   request.setAttribute("IconHelper", new IconHelper(request));
   request.setAttribute("SearchHelper", new SearchHelper(request));
   request.setAttribute("HtmlHelper", new HtmlHelper(request));
@@ -153,4 +118,63 @@
     	return false;
     }
 	}
+%>
+
+<%-- FilehubHelper --%>
+<%@include file="FilehubHelper.jspf"%>
+<%
+    // Add the "Filehub Url" setup attribute
+    setupHelper
+        .addSetupAttribute(
+            "Filehub Url",
+            "The URL to the Kinetic Filehub application (https://acme.com/kinetic-filehub)",
+            request.getParameter("filestore") != null);
+    // Declare the filehubHelper, which is referenced in the router.jspf file
+    FilehubHelper filehubHelper = null;
+    // If the request is scoped to a specific Kapp (space display pages are not)
+    if (kapp != null && kapp.hasAttribute("Filehub Url")) {
+        // Initialize the filehub helper
+        filehubHelper = new FilehubHelper(kapp.getAttributeValue("Filehub Url"));
+
+        // Add the "RKM" filestore setup attributes
+        setupHelper
+            .addSetupAttribute(
+                "RKM Filestore Slug",
+                "The slug of the desired filestore configured in Kinetic Filehub.",
+                false)
+            .addSetupAttribute(
+                "RKM Filestore Key",
+                "The key for an access key associated to the specified filestore.",
+                false)
+            .addSetupAttribute(
+                "RKM Filestore Secret",
+                "The secret associated to the specified key.",
+                false);
+        // Initialize the "RKM" filestore
+        if (kapp.hasAttribute("RKM Filestore Slug")) {
+            filehubHelper.addFilestore(
+                kapp.getAttributeValue("RKM Filestore Slug"),
+                kapp.getAttributeValue("RKM Filestore Key"),
+                kapp.getAttributeValue("RKM Filestore Secret"),
+                new FilehubHelper.Authorizer() {
+                    @Override public boolean canAccess(HttpServletRequest request) {
+                      // systemUser.setImpersonatedUser(identity.getUsername());
+                        return true;
+                    }
+                },
+                new FilehubHelper.PathBuilder() {
+                    @Override public String buildPath(HttpServletRequest request) {
+                        //return request.getParameter("path");
+                        String path = request.getParameter("form")+
+                            "/"+request.getParameter("entry")+
+                            "/"+request.getParameter("field");
+                        if (request.getParameter("filename") != null) {
+                            path += "/"+request.getParameter("filename");
+                        }
+                        return path;
+                    }
+                }
+            );
+        }
+    }
 %>

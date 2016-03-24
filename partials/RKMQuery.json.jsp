@@ -54,7 +54,7 @@
  	                                    ${IconHelper.getIconForSource(a['Source'].toString())} <span>${a["Article ID"]}</span>
  	                                </div>
  	                                <div class="col-sm-6 rkm-article-date">
- 	                                    <i class="fa fa-clock-o" data-description="${a["Created Date"]}"></i> <span>${a["Created Ago"]} ago</span>
+ 	                                    <i class="fa fa-clock-o" data-description="${a["Created Date"]}"></i> <span>${a["Created Date"]}</span>
  	                                </div>
  	                            </div>
  	                            <div class="panel-body rkm-article-text collapse">
@@ -160,7 +160,8 @@
                                        arattid = $(this).attr("arattid");
                                        ($(this).attr("arschema") && $(this).attr("arschema").length > 0) ? arschema = $(this).attr("arschema") : arschema = articleForm;
                                        ($(this).attr("arentryid") && $(this).attr("arentryid").length > 0) ? arentryid = $(this).attr("arentryid") : arentryid = articleRequestId.replace(/(KBA\w+)/,"").replace('|',"");
-                                       $(this).attr("src", "DownloadAttachment/" + arschema + "/" + arattid + "/" + arentryid);
+                                       $(this).attr("src", bundle.kappLocation()+ "?filestore=ars&form="+ arschema + "&entry=" + arentryid + "&field=RKMTemplateAttachmnt1");
+                                      //  $(this).attr("src", bundle.kappLocation() + "?filestore=ars&form=" + arschema + "&entry=" + arentryid + "&field=" + arattid);
                                    });
 
                                    // Document attachments through Kinetic

@@ -11,7 +11,6 @@ It includes:
 * ResponseHelper.jspf
 * HtmlHelper.jspf
 * IconHelper.jspf
-* AgeHelper.jspf
 
 * rkm.js
 
@@ -75,14 +74,6 @@ Returns - ArrayList<LinkedHashMap> list
 **${IconHelper.getIconForSource(String source)}**
 Takes in object source attribute and returns a line of HTML
 Requires - String source
-Returns - String string
-
-
-## AgeHelper.jspf
-
-**${AgeHelper.timeAgo(java.util.Date pastDate)}**
-Takes in creation date of an object and compares that with the current date and returns the amount of time that has elapsed.
-Requires - java.util.Date pastDate
 Returns - String string
 
 

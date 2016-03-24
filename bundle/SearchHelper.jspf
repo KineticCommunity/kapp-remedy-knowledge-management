@@ -124,7 +124,6 @@
                     myHashMap.put("Article ID", articleId);
                     myHashMap.put("Source", source);
                     myHashMap.put("Created Date", createdDate.toString());
-                    myHashMap.put("Created Ago", AgeHelper.timeAgo(createdDate));
 
                     if (summary != null && summary.length() > 128) {
                         myHashMap.put("Summary", summary.substring(0, 128));
