@@ -146,6 +146,7 @@
                           var articleId = $(this).data('rkm-article-id');
                           var closeOnly = $('div#article-' + articleId).hasClass('selected-article');
                           $('div.selected-article.show').empty().toggleClass('selected-article show');
+                          console.log($article);
                           // calls partial display
                        		$.ajax({
                               url: '${bundle.kappLocation}' + '?partial=' + $(this).data('rkm-article-source') + '.html',
@@ -160,8 +161,8 @@
                                        arattid = $(this).attr("arattid");
                                        ($(this).attr("arschema") && $(this).attr("arschema").length > 0) ? arschema = $(this).attr("arschema") : arschema = articleForm;
                                        ($(this).attr("arentryid") && $(this).attr("arentryid").length > 0) ? arentryid = $(this).attr("arentryid") : arentryid = articleRequestId.replace(/(KBA\w+)/,"").replace('|',"");
-                                       $(this).attr("src", bundle.kappLocation()+ "?filestore=ars&form="+ arschema + "&entry=" + arentryid + "&field=RKMTemplateAttachmnt1");
-                                      //  $(this).attr("src", bundle.kappLocation() + "?filestore=ars&form=" + arschema + "&entry=" + arentryid + "&field=" + arattid);
+                                      //  $(this).attr("src", bundle.kappLocation()+ "?filestore=ars&form="+ arschema + "&entry=" + arentryid + "&field=RKMTemplateAttachmnt1");
+                                       $(this).attr("src", bundle.kappLocation() + "?filestore=ars&form=" + arschema + "&entry=" + arentryid + "&field=" + arattid);
                                    });
 
                                    // Document attachments through Kinetic

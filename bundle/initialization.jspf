@@ -65,7 +65,7 @@
         // systemUser.login();
         systemUser.setPort(3000);
         systemUser.login();
-        systemUser.setImpersonatedUser(identity.getUsername());
+
         // systemUser.setImpersonatedUser("testUser");
 %>
 
@@ -158,8 +158,34 @@
                 kapp.getAttributeValue("RKM Filestore Secret"),
                 new FilehubHelper.Authorizer() {
                     @Override public boolean canAccess(HttpServletRequest request) {
-                      // systemUser.setImpersonatedUser(identity.getUsername());
-                        return true;
+                        boolean result = false;
+                        String form = request.getParameter("form");
+                        String entryId = request.getParameter("entry");
+                        String field = request.getParameter("field");
+                        if (
+                            form != null && entryId != null && field != null
+                            && field.matches("\\d+")
+                        ) {
+                            int fieldId = Integer.valueOf(field);
+                            try {
+                                // Create a new imperonated user
+                                com.bmc.arsys.api.ARServerUser impersonatedUser =
+                                  new com.bmc.arsys.api.ARServerUser("Demo", "", "en", "emu.kineticdata.com");
+                                  // kapp.getAttributeValue("rkmAdminUsername"),
+                                  // kapp.getAttributeValue("rkmAdminPassword"),
+                                  // kapp.getAttributeValue("rkmLocale"),
+                                  // kapp.getAttributeValue("rkmServer"));
+                                impersonatedUser.setImpersonatedUser(identity.getUsername());
+
+                                com.bmc.arsys.api.Entry entry = impersonatedUser.getEntry(form, entryId, new int[] {fieldId});
+                                if (entry != null && entry.get(fieldId) != null) {
+                                    result = true;
+                                }
+                            } catch (Exception e) {
+                                bundle.getLogger().debug("Unable to retrieve entry.", e);
+                            }
+                        }
+                        return result;
                     }
                 },
                 new FilehubHelper.PathBuilder() {
