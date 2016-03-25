@@ -14,7 +14,7 @@
                 <li>
                     <h4>
                         <span class="badge fa ${setupAttributeEntry.value ? "fa-check" : "fa-times"}"><br></span>
-                        ${setupAttributeEntry.key.getName()} 
+                        ${setupAttributeEntry.key.getName()}
                         <small class="${setupAttributeEntry.key.isRequired() ? "required" : ""}">
                             ${setupAttributeEntry.key.isRequired() ? "Required" : "Optional"}
                         </small>
@@ -24,6 +24,6 @@
             </c:forEach>
         </ul>
         <p>To update your configuration go to the <a href="${bundle.spaceLocation}/app/#/${kapp.slug}/setup/kapp/attributes">
-        Kapp Attribute settings</a>.</p>
+            Kapp Attribute settings</a>.</p>
     </div>
 </bundle:layout>

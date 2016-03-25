@@ -94,4 +94,8 @@
         // Return so that no further JSP processing occurs
         return;
     }
+
+    // if (identity.isAnonymous()) {
+    // Redirect to login -- see Filestore routing example in router.jspf
+    // }
 %>

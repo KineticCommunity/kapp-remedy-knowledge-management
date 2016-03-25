@@ -7,10 +7,10 @@ It includes:
 
 * initialization.jspf
 * router.jspf
-* RKMHelper.jspf
+* RKMArticleSearchHelper.jspf
 * ResponseHelper.jspf
-* HtmlHelper.jspf
-* IconHelper.jspf
+* RKMArticleDetailHelper.jspf
+* RKMIconHelper.jspf
 
 * rkm.js
 
@@ -36,21 +36,21 @@ Processes RKM search request. Evaluates request parameter and passes along eithe
 Preforms Ajax calls that retrieve search results and can also load articles
 
 
-## RKMHelper.jspf
+## RKMArticleSearchHelper.jspf
 
 Examples can be viewed at : http://community.kineticdata.com/10_Kinetic_Request/Kinetic_Request_Core_Edition/Resources/Remedy_Knowledge_Management
 
-**${RKMHelper.searchForms(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser serverUser)}**
+**${RKMArticleSearchHelper.searchForms(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser serverUser)}**
 initializes the MultiFormSearch class by supplying required parameters and builds a private "query" attribute
 Requires - String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser serverUser
 Returns - MultiFormSearch
 
-**${RKMHelper.searchForms.search(com.bmc.arsys.api.ARServerUser serverUser)}**
+**${RKMArticleSearchHelper.searchForms.search(com.bmc.arsys.api.ARServerUser serverUser)}**
 Gets objects that are found by calling the private "preformSearch" function filtering results through the query attributes. Search then returns a JSON string of the results.
 Requires - com.bmc.arsys.api.ARServerUser serverUser
 Returns - String string
 
-**${RKMHelper.searchForms.searchData(com.bmc.arsys.api.ARServerUser serverUser)}**
+**${RKMArticleSearchHelper.searchForms.searchData(com.bmc.arsys.api.ARServerUser serverUser)}**
 Gets objects that are found by calling the private "preformSearch" function filtering results through the query attributes.
 Requires - com.bmc.arsys.api.ARServerUser serverUser
 Returns - ArrayList<LinkedHashMap> list
@@ -69,15 +69,15 @@ Requires - com.bmc.arsys.api.ARServerUser serverUser
 Returns - ArrayList<LinkedHashMap> list
 
 
-## IconHelper.jspf
+## RKMIconHelper.jspf
 
-**${IconHelper.getIconForSource(String source)}**
+**${RKMIconHelper.getIconForSource(String source)}**
 Takes in object source attribute and returns a line of HTML
 Requires - String source
 Returns - String string
 
 
-## HtmlHelper.jspf
+## RKMArticleDetailHelper.jspf
 
 **${findReferenceById(com.bmc.arsys.api.ARServerUser serverUser, String id)}**
 takes in user information and an article id, then fetches the related article

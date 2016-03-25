@@ -4,7 +4,6 @@ This bundle is used to access BMC Remedy Knowledge Management.
 It includes the default:
 
 * RKM service Kapp (kapp.jsp)
-* Full Article display (rkmArticle.jsp)
 * Login page (login.jsp)
 * Reset Password (resetPassword.jsp)
 
@@ -13,11 +12,11 @@ This bundle easily allows for minor personalization by including optional attrib
 
 #### KAPP Attributes
 The following KAPP Attributes are required to properly establish a connection to RKM.
-* _rkmAdminUsername_ : The name of the service administrator.
-* _rkmAdminPassword_ : The password of the service administrator.
-* _rkmLocale_ : The local language code. This is the language in which you want the information returned.
-* _rkmServer_ : The server on which the RKM data is stored. this will be something like _server.yourcompany.com_.
-* _rkmPort_ : The port number.
+* _RKM Admin Username_ : The name of the service administrator.
+* _RKM Admin Password_ : The password of the service administrator.
+* _RKM Locale_ : The local language code. This is the language in which you want the information returned.
+* _RKM Server_ : The server on which the RKM data is stored. this will be something like _server.yourcompany.com_.
+* _RKM Port_ : The port number.
 
 The following Kapp Attribute are required to properly establish a connection to Filehub and properly display images.
 * _Filehub Url_ : The URL to the Kinetic Filehub application. (https://acme.com/kinetic-filehub)

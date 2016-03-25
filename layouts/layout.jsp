@@ -19,7 +19,7 @@
             <bundle:style src="${bundle.location}/libraries/jquery.qtip/jquery.qtip.css" />
             <bundle:style src="${bundle.location}/css/master.css "/>
         </bundle:stylepack>
-        <link href="${bundle.location}/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+            <link href="${bundle.location}/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <bundle:scriptpack>
             <bundle:script src="${bundle.location}/libraries/kd-search/search.js" />
             <bundle:script src="${bundle.location}/libraries/bootstrap/bootstrap.min.js" />

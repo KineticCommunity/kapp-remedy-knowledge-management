@@ -1,10 +1,10 @@
 <%!
-    public static class IconHelper {
+    public static class RKMIconHelper {
 
         private HttpServletRequest request;
 
         // Document
-        public IconHelper(HttpServletRequest request) {
+        public RKMIconHelper(HttpServletRequest request) {
           this.request = request;
         }
 
@@ -31,5 +31,5 @@
                 return "";
             }
         }
-      }
+    }
 %>

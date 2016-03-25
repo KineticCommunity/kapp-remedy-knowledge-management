@@ -43,7 +43,7 @@
                 exitEvents: 'focus'
             });
             return;
-                }
+        }
         var data = {
             displayName: $('input#displayName').val().trim(),
             email: $('input#email').val().trim()
@@ -59,21 +59,21 @@
             beforeSend: function(jqXHR, settings){
                 $('button.save-profile').prop('disabled', true);
                 $('div.profile').notifie({
-                        exit: true,
-                        recurseExit: true
-                    });
+                    exit: true,
+                    recurseExit: true
+                });
             },
             success: function(data, textStatus, jqXHR){
                 $('div.profile').notifie({
                     severity: 'success',
-                        message: 'Saved changes to user ' + data.user.displayName,
-                        expire: 5000
-                    });
+                    message: 'Saved changes to user ' + data.user.displayName,
+                    expire: 5000
+                });
             },
             error: function(jqXHR, textStatus, errorThrown){
                 $('div.profile').notifie({
-                        message: 'Failed to save changes'
-                    });
+                    message: 'Failed to save changes'
+                });
             },
             complete: function(jqXHR, settings){
                 $('button.save-profile').prop('disabled', false);
