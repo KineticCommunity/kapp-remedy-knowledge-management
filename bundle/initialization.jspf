@@ -137,7 +137,7 @@
                                         systemUser.getServer()
                                     );
                                 // impersonatedUser.setPort(systeUser.getPort());
-                                // impersonatedUser.setImpersonatedUser(identity.getUsername());
+                                impersonatedUser.setImpersonatedUser(identity.getUsername());
 
                                 com.bmc.arsys.api.Entry entry = impersonatedUser.getEntry(form, entryId, new int[] {fieldId});
                                 if (entry != null && entry.get(fieldId) != null) {

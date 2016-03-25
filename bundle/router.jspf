@@ -95,7 +95,9 @@
         return;
     }
 
-    // if (identity.isAnonymous()) {
-    // Redirect to login -- see Filestore routing example in router.jspf
-    // }
+    if (identity.isAnonymous()) {
+        response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location",
+            bundle.getSpaceLocation()+"/app/login");
+    }
 %>
