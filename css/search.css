@@ -1,0 +1,59 @@
+.rkm-message-container,
+.rkm-article {
+    margin: 5px 0;
+    border-color: #cccccc;
+    color: #292929;
+}
+.rkm-message-container > div,
+.rkm-article > div {
+    padding: 5px;
+}
+.rkm-message-container .rkm-message {
+    position: relative;
+    font-weight: bold;
+    padding-right: 20px;
+    border: none;
+}
+.rkm-article .rkm-article-title {
+    position: relative;
+    cursor: pointer;
+    font-weight: bold;
+    padding-right: 20px;
+    border-color: #cccccc;
+}
+.rkm-article .rkm-article-title i {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+}
+.rkm-article div[class^="col-"] {
+    padding: 0;
+    margin: 0;
+}
+.rkm-article .rkm-article-text {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: inherit;
+    background-color: #fafafa !important;
+}
+.rkm-article .rkm-article-text * {
+   font-size: 12px !important;
+   color: #292929 !important;
+   background-color: transparent !important;
+   border: none !important;
+   margin: 0 !important;
+}
+.rkm-article .rkm-article-text div.article a {
+   color: #0000AA !important;
+}
+.rkm-article .rkm-article-text div.article sup {
+   font-size: 70% !important;
+   position: relative !important;
+}
+.rkm-article .rkm-article-text .article div.label {
+   font-weight: bold !important;
+   text-decoration: underline !important;
+}
+.rkm-article .rkm-article-text .article div.value {
+   margin: 5px 0 !important;
+}
