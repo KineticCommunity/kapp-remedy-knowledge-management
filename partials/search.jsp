@@ -8,8 +8,8 @@
  --%>
  <%@page pageEncoding="UTF-8" contentType="application/json" trimDirectiveWhitespaces="true"%>
  <%@include file="../bundle/initialization.jspf" %>
- <link rel="stylesheet" href="${bundle.location}/css/rkmSearch.css"/>
- <script src="${bundle.location}/js/rkmSearch.js" type="text/javascript"/>
+ <link rel="stylesheet" href="${bundle.location}/css/rkmSearch.css" />
+ <script type="text/javascript" src="${bundle.location}/js/rkmSearch.js" />
      <%-- Set the page content type, ensuring that UTF-8 is used --%>
      <%-- establishes a catch condition in the event the enclosed code fails --%>
 <c:catch var ="e">
