@@ -86,49 +86,4 @@
     		});
         }
     }
-
-    ext.loadArticle = function(articleSource, articleId){
-        var closeOnly = $('div#article-' + articleId).hasClass('selected-article');
-        $('div.selected-article.show').empty().toggleClass('selected-article show');
-
-        if (!closeOnly){
-            $.ajax({
-                url: '${bundle.kappLocation}' + '&partial=' + $(this).data('rkm-article-source') + '.html',
-                data: {articleId: articleId},
-                beforeSend: function(jqXHR, settings) {
-                    $('#article-' + articleId).html('<div><i class="fa fa-spinner"></i> Loading...</div>').toggleClass('selected-article show');
-                },
-                success: function(data) {
-                    // Article Data
-                    $('#article-' + articleId).html(data);
-
-                    // Images through Kinetic
-                    $('#article-' + articleId).find("img").each(function(){
-                        var arattid, arentryid, arschema;
-                        arattid = $(this).attr("arattid");
-                        ($(this).attr("arschema") && $(this).attr("arschema").length > 0) ? arschema = $(this).attr("arschema") : arschema = articleForm;
-                        ($(this).attr("arentryid") && $(this).attr("arentryid").length > 0) ? arentryid = $(this).attr("arentryid") : arentryid = articleRequestId.replace(/(KBA\w+)/,"").replace('|',"");
-                        $(this).attr("src", "DownloadAttachment/" + arschema + "/" + arattid + "/" + arentryid);
-                    });
-
-                    // Document attachments through Kinetic
-                    $('#article-' + articleId).find("a[path*='sharedresources']").each(function(){
-                        var path = $(this).attr('path').replace(/\?(.*)/,"");
-                        var urlParsed = path.split("/");
-                        $(this).attr("href", "DownloadAttachment/" + urlParsed[2] + "/" + urlParsed[3] + "/" + urlParsed[4]);
-                    });
-
-                    // Keywords
-                    var strKeywords = $('#article-' + articleId + ' .article .field .value.keywords').text();
-                    var keywords = strKeywords.replace(/[\n\r]/g,"").split(" ");
-                    $('#article-' + articleId + ' .article .field .value.keywords').empty();
-                    $.each(keywords, function(index,val){
-                        if(val != ""){
-                            $('#article-' + articleId + ' .article .field .value.keywords').append('<span>'+val+'</span>');
-                        }
-                    });
-                }
-            });
-        }
-    }
 })(jQuery, _);

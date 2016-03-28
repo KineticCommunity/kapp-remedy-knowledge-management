@@ -1,6 +1,5 @@
 $(function() {
     var rkmCount = $('div.rkm-count').data('rkm-count');
-    console.log(rkmCount);
     $('div.rkm-message').text(rkmCount + "Result" + (rkmCount != "1" ? "s" : ""));
     // <c:out value="${showCount ? "$('div.rkm-message-container').hide();" : ""}"/>
     var qtipOptions = {

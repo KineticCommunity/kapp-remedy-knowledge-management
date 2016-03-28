@@ -17,7 +17,6 @@
     <c:set var="mustHave" value="${param.q}"/>
     <c:set var="mayHave" value=""/>
     <c:set var="mustNotHave" value=""/>
-
     <%-- Is search term passed in --%>
     <c:set var="validRequest" value="${param.q != null && param.q.length() > 0}"/>
     <%-- Should we return formatted HTML --%>
@@ -26,7 +25,7 @@
     <c:set var="showCount" value="${param.count != null && param.count.equalsIgnoreCase("true")}"/>
     <%-- Perform the multi form search and write the result to the out stream. --%>
     <c:set var="mfs" value="${RKMArticleSearchHelper.searchForms(mustHave, mayHave, mustNotHave, systemUser)}"/>
-
+    
     <c:choose>
         <%-- checks if return type is HTML --%>
         <c:when test="${returnHTML}">
