@@ -2,12 +2,8 @@
 
     public static class RKMArticleSearchHelper {
 
-        private HttpServletRequest request;
-
         // Document
-        public RKMArticleSearchHelper(HttpServletRequest request) {
-            this.request = request;
-        }
+        public RKMArticleSearchHelper() {}
 
         public MultiFormSearch searchForms(String mustHave, String mayHave, String mustNotHave, com.bmc.arsys.api.ARServerUser systemUser)  throws Exception {
             return new MultiFormSearch(mustHave, mayHave, mustNotHave, systemUser);

@@ -1,13 +1,9 @@
 <%!
 
     public static class RKMArticleDetailHelper {
-
-        private HttpServletRequest request;
-
+        
         // Document
-        public RKMArticleDetailHelper(HttpServletRequest request) {
-    			this.request = request;
-    		}
+        public RKMArticleDetailHelper() {}
 
         public Reference findReferenceById(com.bmc.arsys.api.ARServerUser serverUser, String id) throws com.bmc.arsys.api.ARException {
             return Reference.findById(serverUser, id);

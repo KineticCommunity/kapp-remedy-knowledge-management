@@ -1,12 +1,7 @@
 <%!
     public static class RKMIconHelper {
-
-        private HttpServletRequest request;
-
         // Document
-        public RKMIconHelper(HttpServletRequest request) {
-          this.request = request;
-        }
+        public RKMIconHelper() {}
 
         public String getIconForSource(String source){
             if (source == null){

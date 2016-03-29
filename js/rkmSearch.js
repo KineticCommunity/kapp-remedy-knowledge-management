@@ -31,8 +31,12 @@ $(function() {
                     articleText.find("img").each(function(){
                         var arattid, arentryid, arschema;
                         arattid = $(this).attr("arattid");
-                        ($(this).attr("arschema") && $(this).attr("arschema").length > 0) ? arschema = $(this).attr("arschema") : arschema = articleForm;
-                        ($(this).attr("arentryid") && $(this).attr("arentryid").length > 0) ? arentryid = $(this).attr("arentryid") : arentryid = articleRequestId.replace(/(KBA\w+)/,"").replace('|',"");
+                        if ($(this).attr("arschema") && $(this).attr("arschema").length > 0){
+                            arschema = $(this).attr("arschema");
+                        }
+                        if ($(this).attr("arentryid") && $(this).attr("arentryid").length > 0){
+                            arentryid = $(this).attr("arentryid");
+                        }
                         $(this).attr("src", bundle.kappLocation() + "?filestore=ars&form=" + arschema + "&entry=" + arentryid + "&field=" + arattid);
                     });
 

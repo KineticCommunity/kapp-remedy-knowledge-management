@@ -73,11 +73,11 @@
     request.setAttribute("systemUser", systemUser); // TODO: Remove after helpers accept constructor argument
 
     request.setAttribute("RKMArticleSearchHelper",
-        new RKMArticleSearchHelper(request));//, systemUser));
+        new RKMArticleSearchHelper());//, systemUser));
     request.setAttribute("RKMArticleDetailHelper",
-        new RKMArticleDetailHelper(request));//, systemUser));
+        new RKMArticleDetailHelper());//, systemUser));
     request.setAttribute("RKMIconHelper",
-        new RKMIconHelper(request));//, systemUser));
+        new RKMIconHelper());//, systemUser));
 %>
 
 <%-- FilehubHelper --%>
