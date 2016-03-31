@@ -60,13 +60,12 @@
     // admin access. The authentication information for this user is defined via
     // bundle properties but the username and password default to the default
     // helper context of the kinetic request server.
-    com.bmc.arsys.api.ARServerUser systemUser =
+    final com.bmc.arsys.api.ARServerUser systemUser =
         new com.bmc.arsys.api.ARServerUser(
-            "Demo", "", "en", "emu.kineticdata.com"
-            // kapp.getAttributeValue("RKM Admin Username"),
-            // kapp.getAttributeValue("RKM Admin Password"),
-            // kapp.getAttributeValue("RKM Locale"),
-            // kapp.getAttributeValue("RKM Server")
+            kapp.getAttributeValue("RKM Admin Username"),
+            kapp.getAttributeValue("RKM Admin Password"),
+            kapp.getAttributeValue("RKM Locale"),
+            kapp.getAttributeValue("RKM Server")
         );
     systemUser.setPort(3000);
     systemUser.login();
@@ -128,7 +127,7 @@
                         ) {
                             int fieldId = Integer.valueOf(field);
                             try {
-                                // Create a new imperonated user
+                                // Create a new impersonated user
                                 com.bmc.arsys.api.ARServerUser impersonatedUser =
                                     new com.bmc.arsys.api.ARServerUser(
                                         systemUser.getUser(),
@@ -137,14 +136,13 @@
                                         systemUser.getServer()
                                     );
                                 // impersonatedUser.setPort(systeUser.getPort());
-                                impersonatedUser.setImpersonatedUser(identity.getUsername());
-
+                                impersonatedUser.setImpersonatedUser(((Identity)request.getAttribute("identity")).getUsername());
                                 com.bmc.arsys.api.Entry entry = impersonatedUser.getEntry(form, entryId, new int[] {fieldId});
                                 if (entry != null && entry.get(fieldId) != null) {
                                     result = true;
                                 }
                             } catch (Exception e) {
-                                bundle.getLogger().debug("Unable to retrieve entry.", e);
+                                ((Bundle)request.getAttribute("bundle")).getLogger().debug("Unable to retrieve entry.", e);
                             }
                         }
                         return result;

@@ -24,10 +24,6 @@ The following Kapp Attribute are required to properly establish a connection to 
 * _RKM Filestore Key_ : The secret associated to the specified key.
 * _RKM Filestore Secret_ : The key for an access key associated to the specified filestore.
 
-##### Optional KAPP Attributes
-* _Task Server Url_ : URL of your Kinetic Task engine.
-* _Task Source Name_ : Source name from Kinetic Task engine.
-
 #### Category Attributes
 * _Hidden_ : Including this attribute on a category means the category and forms in that category will not be shown on the portal page.
 

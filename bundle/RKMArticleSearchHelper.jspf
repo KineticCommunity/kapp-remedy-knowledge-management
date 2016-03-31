@@ -1,3 +1,4 @@
+<%-- RKMArticleSearchHelper establishes the applicable search criteria and iterates through RKM articls --%>
 <%!
 
     public static class RKMArticleSearchHelper {
@@ -27,7 +28,7 @@
             }
 
             public String search(com.bmc.arsys.api.ARServerUser serverUser) throws com.bmc.arsys.api.ARException, Exception {
-            	return org.json.simple.JSONValue.toJSONString(performSearch(serverUser));
+                return org.json.simple.JSONValue.toJSONString(performSearch(serverUser));
             }
 
             public ArrayList<LinkedHashMap> searchData(com.bmc.arsys.api.ARServerUser serverUser) throws com.bmc.arsys.api.ARException, Exception {

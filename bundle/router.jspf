@@ -1,3 +1,15 @@
+<%-- KAPP AUTHENTICATION ROUTING --%>
+<%
+    if (identity.isAnonymous()) {
+        // Simulate a 401 unauthenticated response
+        response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location",
+            bundle.getSpaceLocation()+"/app/login"+(kapp == null ? "" : "?kapp="+kapp.getSlug()));
+        // Return so that no further JSP processing occurs
+        return;
+    }
+%>
+
 <%-- INVALID SETUP ROUTING --%>
 <%
     // If the request is scoped to a specific Kapp (space display pages are not)
@@ -93,11 +105,5 @@
         }
         // Return so that no further JSP processing occurs
         return;
-    }
-
-    if (identity.isAnonymous()) {
-        response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
-        response.setHeader("Location",
-            bundle.getSpaceLocation()+"/app/login");
     }
 %>

@@ -1,18 +1,22 @@
+// rkmSearch.js handles the returned articles and brings back detailed article descriptions when applicable.
 $(function() {
+    // evaluates the number of RKM articles returned by a search query
     var rkmCount = $('div.rkm-count').data('rkm-count');
     $('div.rkm-message').text(rkmCount + "Result" + (rkmCount != "1" ? "s" : ""));
-    // <c:out value="${showCount ? "$('div.rkm-message-container').hide();" : ""}"/>
+    // takes advantage of qtip display convention
     var qtipOptions = {
         content: { attr:'data-description' },
         style: { classes:'qtip-tipsy qtip-shadow', tip: { corner: true } },
         position: { my:'left center', at:'right middle' }
     };
     $('div.rkm-article-id i, div.rkm-article-date i').qtip(qtipOptions).qtip('api');
+    // expands article to fetch any applicable details
     $('div.rkm-article-title').on('click', function(e){
         var article = $(this).closest('.rkm-article');
         var dataLoaded = article.data('rkm-article-loaded') ? true : false;
         article.find('div.rkm-article-text').stop(true, true).slideToggle(300);
         $(this).find('i').toggleClass('fa-plus-square fa-minus-square');
+        // checks to see if rkm-article-loaded exists and then preforms an ajax call that fetches a partial that displays article detail
         if (!dataLoaded){
             article.data('rkm-article-loaded', true);
             var articleText = article.find('.rkm-article-text');
@@ -26,7 +30,6 @@ $(function() {
                 success: function(data) {
                     // Article Data
                     articleText.html(data);
-
                     // Images through Kinetic
                     articleText.find("img").each(function(){
                         var arattid, arentryid, arschema;
@@ -39,14 +42,11 @@ $(function() {
                         }
                         $(this).attr("src", bundle.kappLocation() + "?filestore=ars&form=" + arschema + "&entry=" + arentryid + "&field=" + arattid);
                     });
-
                     // Document attachments through Kinetic
                     articleText.find("a[path*='sharedresources']").each(function(){
                         var path = $(this).attr('path').replace(/\?(.*)/,"");
                         var urlParsed = path.split("/");
-                        $(this).attr("href", "DownloadAttachment/" + urlParsed[2] + "/" + urlParsed[3] + "/" + urlParsed[4]);
                     });
-
                     // Keywords
                     var strKeywords = articleText.find('.article .field .value.keywords').text();
                     var keywords = strKeywords.replace(/[\n\r]/g,"").split(" ");

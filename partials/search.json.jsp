@@ -19,7 +19,6 @@
 <c:set var="mfs" value="${RKMArticleSearchHelper.searchForms(mustHave, mayHave, mustNotHave, systemUser)}"/>
 <%-- form.jsp --%>
 <json:array>
-    <%-- Pulls back stringified JSON Data if returnHTML is false --%>
     <c:forEach var="jsonData" items="${mfs.searchData(systemUser)}">
         <json:object>
             <json:property name="id" value="${jsonData['Article ID']}"/>
