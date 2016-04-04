@@ -1,6 +1,5 @@
 <%-- RKMArticleDetailHelper is used to set up which html partial is used to display detailed information --%>
 <%!
-
     public static class RKMArticleDetailHelper {
 
         // Document
