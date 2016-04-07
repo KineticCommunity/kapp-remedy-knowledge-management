@@ -56,7 +56,8 @@ $(function() {
                             articleText.find('.article .field .value.keywords').append('<span>'+val+'</span>');
                         }
                     });
-                    $("div.article").append("<i class='use fa fa-check-square-o fa-lg'> <span>Was this helpful?</span></i>");
+
+                    $("div.article").append("<i class='use fa fa-square-o fa-lg'> <span>Was this helpful?</span></i>");
                     $("i.use").click(function() {
                         $.ajax({
                            url: bundle.kappLocation() + '?partial=articles/incrementRelevance',

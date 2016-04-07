@@ -10,9 +10,7 @@
         // when populating the action below.
         String articleId = request.getParameter("articleId");
         RKMArticleDetailHelper.KnowledgeArticle article = RKMArticleDetailHelper.findKnowledgeArticleById(systemUser, articleId);
-        // %>
-        // <c:set var="article" value="${RKMArticleDetailHelper.findKnowledgeArticleById(systemUser, articleId)}"/>
-        // <%
+
         // Create the entry that will represent the SYS:Action record.  Each
         // of the fields that is populated is either populated by a constant
         // value, or is derived from the knowledge article retrieved above.
