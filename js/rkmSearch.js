@@ -26,7 +26,7 @@ $(function() {
             // calls partial display
             $.ajax({
                 url: bundle.kappLocation() + '?partial=articles/' + $(this).data('rkm-article-source'),
-                data: { articleId: $(this).data('rkm-article-id')},
+                data: { articleId: articleId},
                 success: function(data) {
                     // Article Data
                     articleText.html(data);
@@ -56,6 +56,21 @@ $(function() {
                             articleText.find('.article .field .value.keywords').append('<span>'+val+'</span>');
                         }
                     });
+                    $("div.article").append("<i class='use fa fa-check-square-o fa-lg'> <span>Was this helpful?</span></i>");
+                    $("i.use").click(function() {
+                        $.ajax({
+                           url: bundle.kappLocation() + '?partial=articles/incrementRelevance',
+                           data: {articleId: articleId},
+                           success: function(data) {
+                               $(".use").remove();
+                               $("div.article").append("<i class='fa fa-check-square fa-lg'> <span>Feedback Submitted</span></i>");
+                           },
+                           error: function(jqXHR){
+                               $(".use").remove();
+                               $("div.article").append("<span style='color:red !important'>submission has failed</span>");
+                           }
+                       })
+                   });
                 }
             });
         }

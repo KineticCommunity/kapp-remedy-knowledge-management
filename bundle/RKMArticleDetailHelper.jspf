@@ -13,7 +13,7 @@
             return KnownError.findById(serverUser, id);
         }
 
-        public KnowledgeArticle findKnowledgeArticleById(com.bmc.arsys.api.ARServerUser serverUser, String id) throws com.bmc.arsys.api.ARException {
+        public static KnowledgeArticle findKnowledgeArticleById(com.bmc.arsys.api.ARServerUser serverUser, String id) throws com.bmc.arsys.api.ARException {
             return KnowledgeArticle.findById(serverUser, id);
         }
 
