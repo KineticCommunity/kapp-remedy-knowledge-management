@@ -56,19 +56,19 @@ $(function() {
                             articleText.find('.article .field .value.keywords').append('<span>'+val+'</span>');
                         }
                     });
-
-                    $("div.article").append("<i class='use fa fa-square-o fa-lg'> <span>Was this helpful?</span></i>");
-                    $("i.use").click(function() {
+                    
+                    $("div#"+articleId).append("<i class='use fa fa-square-o fa-lg'> <span>Was this helpful?</span></i>");
+                    $("div#"+articleId).children("i.use").click(function(){
                         $.ajax({
                            url: bundle.kappLocation() + '?partial=articles/incrementRelevance',
                            data: {articleId: articleId},
-                           success: function(data) {
-                               $(".use").remove();
-                               $("div.article").append("<i class='fa fa-check-square fa-lg'> <span>Feedback Submitted</span></i>");
+                           success: function(data){
+                               $("div#"+articleId).children("i.use").remove();
+                               $("div#"+articleId).append("<i class='use fa fa-check-square fa-lg'> <span>Feedback Submitted</span></i>");
                            },
                            error: function(jqXHR){
-                               $(".use").remove();
-                               $("div.article").append("<span style='color:red !important'>submission has failed</span>");
+                               $("div#"+articleId).children("i.use").remove();
+                               $("div#"+articleId).append("<span style='color:red !important'>submission has failed</span>");
                            }
                        })
                    });

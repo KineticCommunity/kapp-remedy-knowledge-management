@@ -3,7 +3,7 @@
 
 <c:set var="articleId" value="${param.articleId}"/>
 <c:set var="howTo" value="${RKMArticleDetailHelper.findHowToById(systemUser, articleId)}"/>
-<div class="article">
+<div class="article" id="${articleId}">
     <c:if test="${howTo.getQuestion() != null}">
         <div class="field">
             <div class="label">Question</div>

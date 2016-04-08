@@ -3,7 +3,7 @@
 
 <c:set var="articleId" value="${param.articleId}"/>
 <c:set var="knownError" value="${RKMArticleDetailHelper.findKnownErrorById(systemUser, articleId)}"/>
-<div class="article">
+<div class="article" id="${articleId}">
     <c:if test="${knownError.getError() != null}">
         <div class="field">
             <div class="label">Error</div>

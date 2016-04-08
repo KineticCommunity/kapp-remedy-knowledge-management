@@ -3,7 +3,7 @@
 
 <c:set var="articleId" value="${param.articleId}"/>
 <c:set var="reference" value="${RKMArticleDetailHelper.findReferenceById(systemUser, articleId)}"/>
-<div class="article">
+<div class="article" id="${articleId}">
     <c:if test="${reference.getReference() != null}">
         <div class="field">
             <div class="label">Reference</div>
