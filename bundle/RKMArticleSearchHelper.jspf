@@ -74,12 +74,14 @@
                     // 302311206 = Problem solution field (unlimited)
                     // 302311207 = Known Error "Error" field
                     // 302311210 = RKM Reference "Reference" field
-                    int[] deepFieldIds = new int[6];
+                    int[] deepFieldIds = new int[8];
                     deepFieldIds[0] = 302300502;
                     deepFieldIds[1] = 302300507;
                     deepFieldIds[2] = 6;
                     deepFieldIds[5] = 3;
                     deepFieldIds[3] = 302301007;
+                    deepFieldIds[6] = 302300579;
+                    deepFieldIds[7] = 302280301;
 
                     // Query for the data in the ultimate target form.
                     if (deepTargetForm.startsWith("RKM:HowToTemplate")) {
@@ -102,6 +104,7 @@
                         // values from the entries.  These are retrieved in such a
                         // way that guards against null pointers because they may
                         // contain null values.
+
                         Object articleTitleValue = deepEntryList.get(0).get(302300502).getValue();
                         String articleTitle = (articleTitleValue == null) ? null : articleTitleValue.toString();
                         Object articleIdValue = deepEntryList.get(0).get(302300507).getValue();
@@ -110,7 +113,10 @@
                         String source = (sourceValue == null) ? null : sourceValue.toString();
                         Object summaryValue = deepEntryList.get(0).get(deepFieldIds[4]).getValue();
                         String summary = (summaryValue == null) ? null : summaryValue.toString().replaceAll("\\<[^>]*>", "");
-
+                        Object articleStatusValue = deepEntryList.get(0).get(302300579).getValue();
+                        String articleStatus = (articleStatusValue == null) ? null : articleStatusValue.toString();
+                        Object uniqueRequestIdValue = deepEntryList.get(0).get(302280301).getValue();
+                        String uniqueRequestId = (uniqueRequestIdValue == null) ? null : uniqueRequestIdValue.toString();
                         // Retrieve the article modified and created date values
                         // from the entry.  These are not guarded against null
                         // pointers because they are assumed to always have a value.
@@ -121,13 +127,17 @@
                         myHashMap.put("Article ID", articleId);
                         myHashMap.put("Source", source);
                         myHashMap.put("Created Date", createdDate.toString());
+                        myHashMap.put("Unique Request ID", uniqueRequestId);
 
                         if (summary != null && summary.length() > 128) {
                             myHashMap.put("Summary", summary.substring(0, 128));
                         } else {
                             myHashMap.put("Summary", summary);
                         }
-                        outputCollection.add(myHashMap);
+                        // ensures that only currently relevant ("Published") articles are returned
+                        if (articleStatus.equals("Published")){
+                            outputCollection.add(myHashMap);
+                        }
                     }
                 }
                 return outputCollection;

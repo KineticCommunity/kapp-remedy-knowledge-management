@@ -36,7 +36,7 @@
                     <c:set var="sourceCallback" value="${sourceCallback.substring(0, 1).toLowerCase()}${sourceCallback.substring(1)}"/>
                     <c:set var="rkmCount" value="${rkmCount + 1}"/>
                     <div class="panel panel-default rkm-article" id="article-${a["Article ID"]}">
-                        <div class="panel-heading rkm-article-title" data-rkm-article-source="${sourceCallback}" data-rkm-article-id="${a["Article ID"]}">
+                        <div class="panel-heading rkm-article-title" data-rkm-article-source="${sourceCallback}" data-request-id="${a["Unique Request ID"]}" data-rkm-article-id="${a["Article ID"]}">
                             <span>${a['Article Title']}</span> <i class="fa fa-plus-square"></i>
                         </div>
                         <div class="panel-body rkm-article-details">

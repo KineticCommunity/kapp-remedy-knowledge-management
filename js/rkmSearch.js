@@ -22,6 +22,7 @@
                 article.data('rkm-article-loaded', true);
                 var articleText = article.find('.rkm-article-text');
                 var articleId = $(this).data('rkm-article-id');
+                var requestId = $(this).data('request-id');
                 var closeOnly = $('div#article-' + articleId).hasClass('selected-article');
                 $('div.selected-article.show').empty().toggleClass('selected-article show');
                 // calls partial display
@@ -57,19 +58,20 @@
                                 articleText.find('.article .field .value.keywords').append('<span>'+val+'</span>');
                             }
                         });
-
-                        $("div#"+articleId).append("<i class='use fa fa-square-o fa-lg'> <span>Was this helpful?</span></i>");
-                        $("div#"+articleId).children("i.use").click(function(){
+                        // var words = $(data)
+                        // console.log(words);
+                        articleText.append("<div id='"+requestId+"''><i class='use fa fa-square-o fa-lg'> <span>Was this helpful?</span></i></div>");
+                        $("div#"+requestId).children("i.use").click(function(){
                             $.ajax({
                                url: bundle.kappLocation() + '?partial=articles/incrementRelevance',
                                data: {articleId: articleId},
                                success: function(data){
-                                   $("div#"+articleId).children("i.use").remove();
-                                   $("div#"+articleId).append("<i class='use fa fa-check-square fa-lg'> <span>Feedback Submitted</span></i>");
+                                   $("div#"+requestId).children("i.use").remove();
+                                   $("div#"+requestId).append("<i class='use fa fa-check-square fa-lg'> <span>Feedback Submitted</span></i>");
                                },
                                error: function(jqXHR){
-                                   $("div#"+articleId).children("i.use").remove();
-                                   $("div#"+articleId).append("<span style='color:red !important'>submission has failed</span>");
+                                   $("div#"+requestId).children("i.use").remove();
+                                   $("div#"+requestId).append("<span style='color:red !important'>submission has failed</span>");
                                }
                            })
                        });

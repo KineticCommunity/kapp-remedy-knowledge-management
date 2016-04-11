@@ -3,7 +3,7 @@
 
 <c:set var="articleId" value="${param.articleId}"/>
 <c:set var="decisionTree" value="${RKMArticleDetailHelper.findDecisionTreeById(systemUser, articleId)}"/>
-<div class="article" id="${articleId}">
+<div class="article">
     <c:if test="${decisionTree.getDecisionTree() != null}">
         <div class="field">
             <div class="label">Decision Tree</div>
