@@ -18,7 +18,7 @@
     <%-- Is search term passed in --%>
     <c:set var="validRequest" value="${param.q != null && param.q.length() > 0}"/>
     <%-- Should we show the count --%>
-    <c:set var="showCount" value="${param.count != null && param.count.equalsIgnoreCase("true")}"/>
+    <c:set var="showCount" value="${param.count != null && param.count.equalsIgnoreCase('true')}"/>
     <%-- Perform the multi form search and write the result to the out stream. --%>
     <c:set var="mfs" value="${RKMArticleSearchHelper.searchForms(mustHave, mayHave, mustNotHave, systemUser)}"/>
 
