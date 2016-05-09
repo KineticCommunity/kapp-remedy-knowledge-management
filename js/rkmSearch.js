@@ -42,7 +42,8 @@
                             if ($(this).attr("arentryid") && $(this).attr("arentryid").length > 0){
                                 arentryid = $(this).attr("arentryid");
                             }
-                            $(this).attr("src", bundle.kappLocation() + "?filestore=ars&form=" + arschema + "&entry=" + arentryid + "&field=" + arattid);
+                            //rkmFileStore is declared in kapp.jsp
+                            $(this).attr("src", bundle.kappLocation() + "?filestore=" + rkmFileStore + "&form=" + arschema + "&entry=" + arentryid + "&field=" + arattid);
                         });
                         // Document attachments through Kinetic
                         articleText.find("a[path*='sharedresources']").each(function(){
@@ -60,18 +61,18 @@
                         });
                         // var words = $(data)
                         // console.log(words);
-                        articleText.append("<div id='"+requestId+"''><i class='use fa fa-square-o fa-lg'> <span>Was this helpful?</span></i></div>");
-                        $("div#"+requestId).children("i.use").click(function(){
+                        articleText.append("<div id='"+requestId+"' style='cursor:pointer;'><div='use'><i class='fa fa-square-o fa-lg'></i> Was this helpful?</div></div>");
+                        $("div#"+requestId).children("use").click(function(){
                             $.ajax({
                                url: bundle.kappLocation() + '?partial=articles/incrementRelevance',
                                data: {articleId: articleId},
                                success: function(data){
-                                   $("div#"+requestId).children("i.use").remove();
-                                   $("div#"+requestId).append("<i class='use fa fa-check-square fa-lg'> <span>Feedback Submitted</span></i>");
+                                   $("div#"+requestId).children("use").remove();
+                                   $("div#"+requestId).append("<div class='use'><i class='fa fa-check-square fa-lg'></i> Feedback Submitted</div>");
                                },
                                error: function(jqXHR){
-                                   $("div#"+requestId).children("i.use").remove();
-                                   $("div#"+requestId).append("<span style='color:red !important'>submission has failed</span>");
+                                   $("div#"+requestId).children("use").remove();
+                                   $("div#"+requestId).append("<span style='color:red !important'>Feedback submission was unsuccessful.</span>");
                                }
                            })
                        });
