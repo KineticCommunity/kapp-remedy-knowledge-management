@@ -10,7 +10,7 @@
  <%@include file="../bundle/initialization.jspf" %>
  <link rel="stylesheet" href="${bundle.location}/css/rkmSearch.css" />
  <script type="text/javascript" src="${bundle.location}/js/rkmSearch.js" />
-     <%-- Set the page content type, ensuring that UTF-8 is used --%>
+    <%-- Set the page content type, ensuring that UTF-8 is used --%>
     <%-- Retrieve the search terms from the request parameters. --%>
     <c:set var="mustHave" value="${param.q}"/>
     <c:set var="mayHave" value=""/>
@@ -32,7 +32,7 @@
             <%-- iterates over returned arraylist and each instance is refered to as "a" --%>
             <c:forEach var="a" items="${mfs.searchData(systemUser)}">
                 <c:if test="${a['Source'] != null}">
-                    <c:set var="sourceCallback" value="${a['Source'].toString().replaceAll("\\s","")}"/>
+                    <c:set var="sourceCallback" value="${a['Source'].toString().replaceAll('\\\s','')}"/>
                     <c:set var="sourceCallback" value="${sourceCallback.substring(0, 1).toLowerCase()}${sourceCallback.substring(1)}"/>
                     <c:set var="rkmCount" value="${rkmCount + 1}"/>
                     <div class="panel panel-default rkm-article" id="article-${a["Article ID"]}">
