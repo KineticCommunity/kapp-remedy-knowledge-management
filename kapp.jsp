@@ -7,6 +7,9 @@
     <script type="text/javascript">
         var queryParameter = "${text.escapeJs(param.q != null ? param.q : "")}";
     </script>
+    <script type="text/javascript">
+        var rkmFileStore = "${kapp.getAttribute('RKM Filestore Slug').value}";
+    </script>
 
     <div class="rkm-data">
         <div class="rkm-title">
