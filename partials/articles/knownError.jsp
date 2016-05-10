@@ -7,25 +7,25 @@
     <c:if test="${knownError.getError() != null}">
         <div class="field">
             <div class="label">Error</div>
-            <div class="value"><pre>${knownError.getError()}</pre></div>
+            <div class="value">${knownError.getError()}</div>
         </div>
     </c:if>
     <c:if test="${knownError.getRootCause() != null}">
         <div class="field">
             <div class="label">Root Cause</div>
-            <div class="value"><pre>${knownError.getRootCause()}</pre></div>
+            <div class="value">${knownError.getRootCause()}</div>
         </div>
     </c:if>
     <c:if test="${knownError.getWorkAroundFix() != null}">
         <div class="field">
             <div class="label">Work Around/Fix</div>
-            <div class="value"><pre>${knownError.getWorkAroundFix()}</pre></div>
+            <div class="value">${knownError.getWorkAroundFix()}</div>
         </div>
     </c:if>
     <c:if test="${knownError.getTechnicalNotes() != null}">
         <div class="field">
             <div class="label">Technical Notes</div>
-            <div class="value"><pre>${knownError.getTechnicalNotes()}</pre></div>
+            <div class="value">${knownError.getTechnicalNotes()}</div>
         </div>
     </c:if>
 </div>

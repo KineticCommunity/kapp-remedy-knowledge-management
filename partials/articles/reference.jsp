@@ -7,7 +7,7 @@
     <c:if test="${reference.getReference() != null}">
         <div class="field">
             <div class="label">Reference</div>
-            <div class="value"><pre>${reference.getReference()}</pre></div>
+            <div class="value">${reference.getReference()}</div>
         </div>
     </c:if>
 </div>

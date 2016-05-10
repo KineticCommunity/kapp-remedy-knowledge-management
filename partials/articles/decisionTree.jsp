@@ -7,7 +7,7 @@
     <c:if test="${decisionTree.getDecisionTree() != null}">
         <div class="field">
             <div class="label">Decision Tree</div>
-            <div class="value"><pre>${decisionTree.getDecisionTree()}</pre></div>
+            <div class="value">${decisionTree.getDecisionTree()}</div>
         </div>
     </c:if>
 </div>
