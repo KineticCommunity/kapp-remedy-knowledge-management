@@ -48,7 +48,7 @@
                                 ${RKMIconHelper.getIconForSource(a['Source'].toString())} <span>${a["Article ID"]}</span>
                             </div>
                             <div class="col-sm-6 rkm-article-date">
-                                <i class="fa fa-clock-o" data-description="${a['Created Date']}"></i> <span>${time.format(time.parse(a['Created Date'],'EEE MMM dd HH:mm:ss zzz yyyy', 'UTC', Locale.US),'MMM dd, yyyy  hh:mm a', zoneId, locale)},"MMM DD, YYYY hh:mm a"</span>
+                                <i class="fa fa-clock-o" data-description="${a['Created Date']}"></i> <span>${time.format(time.parse(a['Created Date'],'EEE MMM dd HH:mm:ss zzz yyyy', 'UTC', Locale.US),'MMM dd, yyyy  hh:mm a', zoneId, locale)}</span>
                             </div>
                         </div>
                         <div class="panel-body rkm-article-text collapse">
